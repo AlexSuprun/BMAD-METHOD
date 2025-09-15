@@ -19,8 +19,8 @@ npx bmad-method install        # Install or update BMAD in project
 npm run install:bmad           # Alternative install/update command
 
 # Using Local Forked Repository
-npx /Users/alexsuprun/Documents/my-code/BMAD-METHOD install    # Use local fork directly
-node /Users/alexsuprun/Documents/my-code/BMAD-METHOD/tools/cli.js install  # Alternative direct execution
+npx /path/to/your/BMAD-METHOD install    # Use local fork directly
+node /path/to/your/BMAD-METHOD/tools/cli.js install  # Alternative direct execution
 
 # Building and validation
 npm run build                  # Build all web bundles
@@ -174,8 +174,8 @@ This repository is a fork with custom changes. To use your local fork instead of
 
 ```bash
 # Method 1: Direct execution with full path
-npx /Users/alexsuprun/Documents/my-code/BMAD-METHOD install
-node /Users/alexsuprun/Documents/my-code/BMAD-METHOD/tools/cli.js [command]
+npx /path/to/your/BMAD-METHOD install
+node /path/to/your/BMAD-METHOD/tools/cli.js [command]
 
 # Method 2: Create global link (one-time setup)
 npm link                    # Run in this BMAD-METHOD directory
