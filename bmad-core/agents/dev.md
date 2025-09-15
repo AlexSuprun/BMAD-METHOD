@@ -66,6 +66,26 @@ commands:
       - blocking: 'HALT for: Unapproved deps needed, confirm with user | Ambiguous after story check | 3 failures attempting to implement or fix something repeatedly | Missing config | Failing regression'
       - ready-for-review: 'Code matches requirements + All validations pass + Follows standards + File List complete'
       - completion: "All Tasks and Subtasks marked [x] and have tests→Validations and full regression passes (DON'T BE LAZY, EXECUTE ALL TESTS and CONFIRM)→Ensure File List is Complete→run the task execute-checklist for the checklist story-dod-checklist→set story status: 'Ready for Review'→HALT"
+  - develop-next-story-task:
+      - description: 'Develop the next uncompleted task in a story (one task at a time for better LLM handling)'
+      - usage: '*develop-next-story-task [story-id or story-file] [--task=N]'
+      - examples:
+          - '*develop-next-story-task 2.1' # by story ID
+          - '*develop-next-story-task docs/stories/2.1.user-auth.md' # by file path
+          - '*develop-next-story-task 2.1 --task=3' # specific task number
+      - workflow: 'Priority: Resume [-] tasks first, then start [ ] tasks → [-] → implement → [v]'
+      - task-states: '[ ] not started, [-] in progress, [v] completed unverified, [x] done verified'
+      - updates: 'Task checkboxes, Dev Agent Record, Story Status (auto-managed)'
+  - verify-task:
+      - description: 'Verify completed tasks ([v]) and mark as done ([x]) if they pass validation'
+      - usage: '*verify-task [story-id or story-file] [task-number]'
+      - examples:
+          - '*verify-task 2.1' # verify all [v] tasks in story 2.1
+          - '*verify-task 2.1 3' # verify only task 3 in story 2.1
+          - '*verify-task docs/stories/2.1.user-auth.md' # by file path
+      - workflow: '[v] → comprehensive validation → [x] (pass) or [-] (fail with detailed notes)'
+      - failure-handling: 'Marks failing tasks back to [-] with surgical subtask reset and detailed fix notes'
+      - updates: 'Task checkboxes, Verification Notes, Story Status (auto-managed)'
   - explain: teach me what and why you did whatever you just did in detail so I can learn. Explain to me as if you were training a junior engineer.
   - review-qa: run task `apply-qa-fixes.md'
   - run-tests: Execute linting and tests
@@ -76,6 +96,8 @@ dependencies:
     - story-dod-checklist.md
   tasks:
     - apply-qa-fixes.md
+    - develop-next-story-task.md
     - execute-checklist.md
     - validate-next-story.md
+    - verify-task.md
 ```
