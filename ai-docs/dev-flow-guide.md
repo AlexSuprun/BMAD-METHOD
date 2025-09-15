@@ -280,7 +280,11 @@ graph TD
     FF --> GG["@qa *gate {story}"]
     GG --> BB
     BB --> HH["✅ All Regression Tests Pass"]
-    HH --> II["📝 COMMIT CHANGES"]
+    HH --> SM["@sm *story-checklist"]
+    SM --> SMCheck{"📋 DoD Passed?"}
+    SMCheck -->|Yes| II["📝 COMMIT CHANGES"]
+    SMCheck -->|No| SMFix["🔧 Fix DoD Issues"]
+    SMFix --> N
     II --> JJ{"🚪 Gate Update Needed?"}
     JJ -->|Yes| KK["@qa *gate {story}"]
     JJ -->|No| LL["👤 MANUAL: Update Status<br/>Ready for Review → Done"]
@@ -296,6 +300,9 @@ graph TD
     style II fill:#ffcdd2
     style CC fill:#fff3e0
     style BB fill:#e8f5e9
+    style SM fill:#e1f5fe
+    style SMCheck fill:#fff3e0
+    style SMFix fill:#ffcdd2
 ```
 
 ### Phase 1: Story Preparation (Scrum Master)
@@ -477,6 +484,27 @@ git checkout -b feature/story-name
 @qa *gate {story}  # Update final gate decision
 ```
 
+### Phase 3.5: SM Story Validation
+
+#### 3.13.5 Story Definition of Done Check
+
+```bash
+@sm *story-checklist {completed-story}
+```
+
+**SM Validation Process:**
+
+- Validates story against Definition of Done checklist
+- Verifies all requirements and acceptance criteria met
+- Checks testing completeness and code quality
+- Ensures proper documentation and story administration
+- Validates build, linting, and dependencies
+
+**Decision Point:**
+
+- ✅ **PASS:** All DoD items complete → Proceed to commit
+- ❌ **FAIL:** DoD gaps identified → Return to development with specific fixes needed
+
 ### Phase 4: Story Completion
 
 #### 3.14 Final Validation
@@ -488,6 +516,7 @@ git checkout -b feature/story-name
 - No type errors
 - All acceptance criteria met
 - Documentation updated
+- SM Definition of Done validation passed (`@sm *story-checklist`)
 
 #### 3.15 Commit Changes
 
@@ -500,9 +529,11 @@ git commit -m "feat: implement {story-description}"
 
 **Manual Steps:**
 
-- Mark story status: "Done"
+- Mark story status: "Done" (only after SM DoD validation passes)
 - Add completion notes
 - Update change log
+
+**Note:** Story status updates are triggered by SM validation workflow. Manual status changes should only occur after successful `@sm *story-checklist` validation.
 
 #### 3.17 Continue Cycle
 
@@ -778,6 +809,7 @@ The BMAD Method with proper QA integration achieves:
 @qa *trace {story}                 # Verify coverage (mid-dev)
 @qa *nfr {story}                   # Check quality attributes (mid-dev)
 @qa *review {story}                # Full QA review (required)
+@sm *story-checklist {story}       # Validate DoD (required before commit)
 @qa *gate {story}                  # Update gate status (if needed)
 ```
 
