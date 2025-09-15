@@ -18,6 +18,10 @@ The system eliminates planning inconsistency and context loss by embedding all i
 npx bmad-method install        # Install or update BMAD in project
 npm run install:bmad           # Alternative install/update command
 
+# Using Local Forked Repository
+npx /Users/alexsuprun/Documents/my-code/BMAD-METHOD install    # Use local fork directly
+node /Users/alexsuprun/Documents/my-code/BMAD-METHOD/tools/cli.js install  # Alternative direct execution
+
 # Building and validation
 npm run build                  # Build all web bundles
 npm run build:agents          # Build only agent bundles
@@ -161,6 +165,47 @@ Projects using BMAD must have:
 - Bundles include all dependencies inline
 - Output to `dist/agents/` and `dist/teams/`
 - Used for web UI platforms (Gemini, ChatGPT, etc.)
+
+## Working with Local Fork Repository
+
+### Local Development Setup
+
+This repository is a fork with custom changes. To use your local fork instead of the published package:
+
+```bash
+# Method 1: Direct execution with full path
+npx /Users/alexsuprun/Documents/my-code/BMAD-METHOD install
+node /Users/alexsuprun/Documents/my-code/BMAD-METHOD/tools/cli.js [command]
+
+# Method 2: Create global link (one-time setup)
+npm link                    # Run in this BMAD-METHOD directory
+npx bmad-method install     # Now uses your local version
+
+# Method 3: Install from GitHub fork
+npm install github:AlexSuprun/BMAD-METHOD
+```
+
+### Version Management for Fork
+
+Your fork version: `4.43.3` (higher than published `4.43.1`)
+
+```bash
+# Update your fork version when needed
+npm run version:patch       # Increment patch version
+npm run version:minor       # Increment minor version
+npm run version:major       # Increment major version
+
+# Sync with upstream if needed
+git remote add upstream https://github.com/bmadcode/BMAD-METHOD.git
+git fetch upstream
+git merge upstream/main
+```
+
+### Custom Changes in This Fork
+
+- Enhanced `dev.md` agent with additional capabilities
+- Custom task files: `develop-next-story-task.md`, `verify-task.md`
+- Updated development workflow documentation
 
 ## Testing Approach
 
