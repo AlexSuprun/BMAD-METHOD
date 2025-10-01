@@ -2,7 +2,7 @@
 
 **Started**: 2025-10-01
 **Current Phase**: Phase 1 - BMAD Fundamentals
-**Current Session**: Not started
+**Current Session**: 1.1 Complete ✅ - Ready for Session 1.2
 
 ---
 
@@ -10,11 +10,11 @@
 
 | Phase                          | Status             | Sessions Complete | Total Sessions | % Complete |
 | ------------------------------ | ------------------ | ----------------- | -------------- | ---------- |
-| Phase 1: BMAD Fundamentals     | 🔲 Not Started     | 0/3               | 3              | 0%         |
+| Phase 1: BMAD Fundamentals     | 🟡 In Progress     | 1/3               | 3              | 33%        |
 | Phase 2: Workflow Engineering  | 🔲 Not Started     | 0/2               | 2              | 0%         |
 | Phase 3: Sub-Agent Integration | 🔲 Not Started     | 0/4               | 4              | 0%         |
 | Phase 4: Advanced Features     | 🔲 Not Started     | 0/3               | 3              | 0%         |
-| **TOTAL**                      | **🔲 Not Started** | **0/12**          | **12**         | **0%**     |
+| **TOTAL**                      | **🟡 In Progress** | **1/12**          | **12**         | **8%**     |
 
 ---
 
@@ -22,20 +22,51 @@
 
 ### ✅ Session 1.1: Agent Architecture Anatomy
 
-**Status**: 🔲 Not Started
-**Started**: -
-**Completed**: -
-**Duration**: -
+**Status**: ✅ Complete
+**Started**: 2025-10-01
+**Completed**: 2025-10-01
+**Duration**: ~2 hours
 
 **Deliverables**:
 
-- [ ] Documentation of agent anatomy with annotations
-- [ ] Working custom agent file in `bmad-core/agents/`
+- [x] Documentation of agent anatomy with annotations
+- [x] Working custom agent file in `bmad-core/agents/`
 
-**Checkpoint Passed**: ❓ Pending
+**Checkpoint Passed**: ✅ Yes
 
 **Notes**:
-_Add notes here as you work through the session_
+
+**Key Learnings**:
+
+- BMAD agents are self-contained markdown files with YAML configuration blocks
+- Agent structure: Header → YAML → IDE-FILE-RESOLUTION → REQUEST-RESOLUTION → activation-instructions → agent → persona → commands → dependencies
+- Lazy loading principle: dependencies NOT loaded during activation, only when commands execute
+- Agent activation flow: Read file → Adopt persona → Load config → Greet + \*help → HALT
+- Two valid core_principles formats: "Name - Explanation" (advisory) vs "Direct statement with CRITICAL:" (execution)
+- Commands structure: help (first) → agent-specific commands → yolo → exit (last)
+- Template system with {PLACEHOLDERS} enables consistent agent creation
+
+**Artifacts Created**:
+
+- `ai-docs/plan/agent-template.md` - Clean agent template with placeholders
+- `ai-docs/plan/agent-instructions.md` - Comprehensive instructions for all 15 placeholders with examples
+- `bmad-core/agents/code-reviewer.md` - Custom Code Reviewer agent (validated ✓)
+
+**Agent Design Insights**:
+
+- Two valid formats for core_principles: "Name - Explanation" (analyst, architect) vs "Direct statement" (dev)
+- Agent template system enables consistent, repeatable agent creation
+- Custom agent (code-reviewer) successfully created with:
+  - Unique persona (Rachel, Code Reviewer 🔍)
+  - Review-focused commands (review-code, check-security, analyze-performance, suggest-improvements)
+  - 9 core principles using "Name - Explanation" format
+  - Minimal dependencies (only execute-checklist task)
+  - Validated successfully with `npm run validate`
+
+**Next Session Prep**:
+
+- Review `bmad-core/tasks/` directory to understand task structure
+- Prepare to analyze task system for Session 1.2
 
 ---
 
@@ -257,11 +288,11 @@ _Add notes here as you work through the session_
 ## 📊 Overall Progress
 
 **Total Sessions**: 12
-**Completed Sessions**: 0
+**Completed Sessions**: 1
 **In Progress**: 0
-**Not Started**: 12
+**Not Started**: 11
 
-**Estimated Time Remaining**: ~24-36 hours (based on 2-3 hours per session)
+**Estimated Time Remaining**: ~22-33 hours (based on 2-3 hours per session)
 
 ---
 
@@ -277,6 +308,39 @@ _Add notes here as you work through the session_
 ## 📝 Session Log
 
 _Log each session as you complete it_
+
+### Session 1.1 - Agent Architecture Anatomy - 2025-10-01
+
+**Duration**: ~2 hours
+
+**Key Learnings**:
+
+- BMAD agents are self-contained markdown files with complete YAML configuration
+- Agent structure follows consistent pattern across all agents
+- Lazy loading: dependencies loaded only during command execution, not activation
+- Two valid core_principles formats: "Name - Explanation" vs "Direct statement with CRITICAL:"
+- Template system with placeholders enables repeatable agent creation
+- Commands always structured: help → agent-specific → yolo → exit
+
+**Challenges**:
+
+- Understanding activation-time vs command-execution-time loading (resolved by analyzing multiple agents)
+- Recognizing two different core_principles formats (resolved by comparing analyst vs dev agents)
+- Creating clean template without excessive instructions (resolved by iterative refinement)
+
+**Artifacts Created**:
+
+- `ai-docs/plan/agent-template.md` - Clean agent template with {PLACEHOLDERS}
+- `ai-docs/plan/agent-instructions.md` - Detailed instructions for all 15 placeholders
+- `bmad-core/agents/code-reviewer.md` - Custom Code Reviewer agent (Rachel 🔍, validated ✓)
+
+**Next Session Prep**:
+
+- Review `bmad-core/tasks/` directory structure
+- Read 3-4 task files to understand task anatomy
+- Prepare to analyze task execution flow for Session 1.2
+
+---
 
 ### Session Template
 
