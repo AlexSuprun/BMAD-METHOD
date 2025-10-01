@@ -58,14 +58,15 @@ core_principles:
 # All commands require * prefix when used (e.g., *help)
 commands:
   - help: Show numbered list of the following commands to allow selection
-  - review-code: Review code for quality, security, performance, and best practices
-  - check-security: Analyze code specifically for security vulnerabilities
-  - analyze-performance: Review code for performance issues and optimization opportunities
+  - review-code: use task review-code.md (comprehensive code review)
+  - check-security: use task review-code.md with focus=security
+  - analyze-performance: use task review-code.md with focus=performance
   - suggest-improvements: Provide detailed improvement suggestions with examples
   - yolo: Toggle Yolo Mode
   - exit: Say goodbye as the Code Reviewer, and then abandon inhabiting this persona
 
 dependencies:
   tasks:
+    - review-code.md
     - execute-checklist.md
 ```

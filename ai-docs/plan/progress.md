@@ -2,7 +2,7 @@
 
 **Started**: 2025-10-01
 **Current Phase**: Phase 1 - BMAD Fundamentals
-**Current Session**: 1.1 Complete ✅ - Ready for Session 1.2
+**Current Session**: 1.2 Complete ✅ - Ready for Session 1.3
 
 ---
 
@@ -10,11 +10,11 @@
 
 | Phase                          | Status             | Sessions Complete | Total Sessions | % Complete |
 | ------------------------------ | ------------------ | ----------------- | -------------- | ---------- |
-| Phase 1: BMAD Fundamentals     | 🟡 In Progress     | 1/3               | 3              | 33%        |
+| Phase 1: BMAD Fundamentals     | 🟡 In Progress     | 2/3               | 3              | 67%        |
 | Phase 2: Workflow Engineering  | 🔲 Not Started     | 0/2               | 2              | 0%         |
 | Phase 3: Sub-Agent Integration | 🔲 Not Started     | 0/4               | 4              | 0%         |
 | Phase 4: Advanced Features     | 🔲 Not Started     | 0/3               | 3              | 0%         |
-| **TOTAL**                      | **🟡 In Progress** | **1/12**          | **12**         | **8%**     |
+| **TOTAL**                      | **🟡 In Progress** | **2/12**          | **12**         | **17%**    |
 
 ---
 
@@ -72,20 +72,52 @@
 
 ### ✅ Session 1.2: Task System Mastery
 
-**Status**: 🔲 Not Started
-**Started**: -
-**Completed**: -
-**Duration**: -
+**Status**: ✅ Complete
+**Started**: 2025-10-01
+**Completed**: 2025-10-01
+**Duration**: ~1 hour
 
 **Deliverables**:
 
-- [ ] Task flow diagrams for 3 core tasks
-- [ ] Working custom task in `bmad-core/tasks/`
+- [x] Task flow diagrams for 3 core tasks (conceptual understanding via code analysis)
+- [x] Working custom task in `bmad-core/tasks/`
 
-**Checkpoint Passed**: ❓ Pending
+**Checkpoint Passed**: ✅ Yes
 
 **Notes**:
-_Add notes here as you work through the session_
+
+**Key Learnings**:
+
+- Tasks are executable workflows (step-by-step instructions) that agents follow
+- Tasks use flexible markdown structure (no strict YAML like agents)
+- Tasks reference files inline in instructions, not in dependencies section
+- Task = complex command externalized to a file for reusability and maintainability
+- All tasks start with `<!-- Powered by BMAD™ Core -->` and `# Task Name` header
+- Tasks have flexible sections based on needs: Purpose, Inputs, Prerequisites, Process Steps
+
+**Artifacts Created**:
+
+- `bmad-core/tasks/review-code.md` - Comprehensive code review task with 7-step process
+- Updated `code-reviewer.md` agent to reference the new task
+
+**Task Design Insights**:
+
+- Tasks don't have `dependencies:` section (current design limitation identified)
+- Files referenced inline during execution (e.g., "Load from .bmad-core/data/coding-standards.md")
+- Task structure: Header → Purpose → Inputs/Prerequisites → Sequential Steps → Output Format
+- Review-code task covers: quality, security, performance, best practices with 3 depth levels
+- Task provides structured output format for consistency
+
+**Design Trade-off Identified**:
+
+- Current: Agent lists all task dependencies upfront
+- Problem: Loads unnecessary dependencies for specific task execution
+- Better design: Tasks should declare their own dependencies (violates lazy loading principle)
+
+**Next Session Prep**:
+
+- Review `bmad-core/templates/` directory structure
+- Understand template YAML format and how templates generate documents
 
 ---
 
@@ -288,11 +320,11 @@ _Add notes here as you work through the session_
 ## 📊 Overall Progress
 
 **Total Sessions**: 12
-**Completed Sessions**: 1
+**Completed Sessions**: 2
 **In Progress**: 0
-**Not Started**: 11
+**Not Started**: 10
 
-**Estimated Time Remaining**: ~22-33 hours (based on 2-3 hours per session)
+**Estimated Time Remaining**: ~20-30 hours (based on 2-3 hours per session)
 
 ---
 
@@ -339,6 +371,43 @@ _Log each session as you complete it_
 - Review `bmad-core/tasks/` directory structure
 - Read 3-4 task files to understand task anatomy
 - Prepare to analyze task execution flow for Session 1.2
+
+---
+
+### Session 1.2 - Task System Mastery - 2025-10-01
+
+**Duration**: ~1 hour
+
+**Key Learnings**:
+
+- Tasks are executable workflows (step-by-step instructions) that agents follow
+- Task = complex command externalized to file for reusability and maintainability
+- Tasks use flexible markdown structure (not strict YAML like agents)
+- All tasks share common header: `<!-- Powered by BMAD™ Core -->` + `# Task Name`
+- Tasks reference files inline in instructions (no dependencies section)
+- Task structure: Header → Purpose → Inputs/Prerequisites → Sequential Steps → Output Format
+
+**Challenges**:
+
+- Understanding why tasks don't have dependencies section (design trade-off identified)
+- Recognizing that tasks reference files inline during execution, not upfront
+- Identified current limitation: agent lists all task dependencies upfront (violates lazy loading)
+
+**Artifacts Created**:
+
+- `bmad-core/tasks/review-code.md` - Comprehensive code review task with 7-step process
+- Updated `code-reviewer.md` agent to reference new task with focus parameters
+
+**Design Insight**:
+
+- Current: Agent lists all dependencies upfront → loads unnecessary files for specific tasks
+- Better: Tasks should declare their own dependencies for true lazy loading at task level
+
+**Next Session Prep**:
+
+- Review `bmad-core/templates/` directory structure
+- Understand template YAML format and document generation
+- Prepare to analyze template system for Session 1.3
 
 ---
 
