@@ -64,3 +64,5 @@ src/modules/cis/sub-modules/
 src/modules/bmgd/sub-modules/
 
 z*/
+
+.idea/
