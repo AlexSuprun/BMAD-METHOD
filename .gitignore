@@ -79,3 +79,4 @@ bmad-custom-src/
 website/.astro/
 website/dist/
 build/
+.idea/
