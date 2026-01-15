@@ -2,8 +2,8 @@ const chalk = require('chalk');
 const path = require('node:path');
 const fs = require('fs-extra');
 const ora = require('ora');
-const inquirer = require('inquirer').default || require('inquirer');
 const csv = require('csv-parse/sync');
+const prompts = require('../lib/prompts');
 
 const { Installer } = require('../installers/lib/core/installer');
 const { Manifest } = require('../installers/lib/core/manifest');
@@ -193,14 +193,10 @@ module.exports = {
 
       // Step 7: Confirm unless --force
       if (!options.force) {
-        const { confirmed } = await inquirer.prompt([
-          {
-            type: 'confirm',
-            name: 'confirmed',
-            message: `Uninstall module '${moduleCode}'?`,
-            default: false,
-          },
-        ]);
+        const confirmed = await prompts.confirm({
+          message: `Uninstall module '${moduleCode}'?`,
+          default: false,
+        });
 
         if (!confirmed) {
           console.log(chalk.dim('\nUninstall cancelled.'));
